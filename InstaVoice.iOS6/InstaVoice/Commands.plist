@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Reminder Call Dad for Father’s Day Tomorrow June 21 2012 at 4:15 pm</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day Tomorrow June 21 2012</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day Tomorrow</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day Today</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day June 21 2011</key>
+	<integer>1</integer>
+	<key>Reminder Call Dad for Father’s Day June 21 2011 at 4:15 pm</key>
+	<integer>1</integer>
+	<key>Add Event Call Dad for Father’s Day Tomorrow June 21 2012 at 4:15 pm Repeat Every Year</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day June 21 2012 at 4:15 pm</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day  June 21 2012</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day Today</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day  Repeat Every Year</key>
+	<integer>2</integer>
+	<key>Add Event Call Dad for Father’s Day Tomorrow</key>
+	<integer>2</integer>
+	<key>Email This Subject A totally amazing new app! Message InstaVoice = awesome!</key>
+	<integer>3</integer>
+	<key>Email This  A totally amazing new app! </key>
+	<integer>3</integer>
+	<key>Find Stowe Vermont</key>
+	<integer>4</integer>
+	<key>Find 121 Oak Hills Rd. South Bend Indiana 46604</key>
+	<integer>4</integer>
+	<key>Find Pizza Delivery</key>
+	<integer>4</integer>
+	<key>Find Istanbul</key>
+	<integer>4</integer>
+	<key>Copy This “Whatever you say here is copied to the Clipboard1”</key>
+	<integer>5</integer>
+	<key>“Whatever you say here is copied to the Clipboard” Copy This</key>
+	<integer>5</integer>
+	<key>Flag This “Flags whatever you say in InstaVoice1”</key>
+	<integer>6</integer>
+	<key>“Flags whatever you say in InstaVoice2” Flag This</key>
+	<integer>6</integer>
+	<key>Mark This “Flags whatever you say in InstaVoice3”</key>
+	<integer>6</integer>
+	<key>“Flags whatever you say in InstaVoice4” Mark This</key>
+	<integer>6</integer>
+	<key>Text This “Hey, Sandy! I’m running late. Be there in 10.”</key>
+	<integer>7</integer>
+	<key>Message This “Hey, Sandy! I’m running late. Be there in 10.”</key>
+	<integer>7</integer>
+	<key>Search For “Best camera reviews 2011”</key>
+	<integer>8</integer>
+	<key>Facebook This “Just opened in NY, our band’s da bomb!!”</key>
+	<integer>9</integer>
+	<key>Twitter This “Having breakfast in the most beautiful café in Paris”</key>
+	<integer>10</integer>
+	<key>Wordpress This “Great trail run, perfect day, had my best finish ever!”</key>
+	<integer>11</integer>
+</dict>
+</plist>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>InstaVoice™</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=7" />
+        <link rel="shortcut icon" href="#" type="image/x-icon" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="robots" content="index,follow" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="jquery1.js"></script>
+        <script type="text/javascript" src="jquery2.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //Initialize table sorter
+                $(".table table").tablesorter();
+                $(".table table").bind("sortEnd",function(){
+                   $(".table table tbody tr").removeClass("first");
+                   $(".table table tbody tr:first").addClass("first");
+                   
+                });
+                //Toggles
+                $(".table table .iconDelete").click(function(e){
+                   $(this).removeClass("active").addClass("active"); 
+                   e.preventDefault();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <!-- Page header -->
+        <div class="pageHeader">
+            <div class="center w940">
+                InstaVoice™
+                <div class="buttons">
+                    <!-- Buttons -->
+                    <a href="/zip-all" class="button blackButton right">
+                        <span>Save all</span>
+                    </a>
+                    <a href="/delete-all" class="button redButton right">
+                        <span>Delete all</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="center w940 instructions">
+            Use this page to transfer recordings to your computer<br />
+            Click the arrow icon <span class="smallArrowIcon">&nbsp;</span> or description to download individual items
+        </div>
+        
+        <!-- Table -->
+        <div class="center w940 table">
+            <div class="topShadow">
+                <div class="bottomShadow">
+                    <table cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="column1">
+                                    Date <span class="icon iconDate">&nbsp;</span>
+                                </th>
+                                <th class="column2">
+                                    Download audio & text <span class="icon iconDownload">&nbsp;</span>
+                                </th>
+                                <th class="column3">
+                                    Download text <span class="icon iconText">&nbsp;</span>
+                                </th>
+                                <th class="column4">
+                                    Download audio <span class="icon iconAudio">&nbsp;</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- First row needs to have .first class -->
+							<!--Add Text Here-->
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+                
+        <!-- Instructions -->
+        <div class="textRight center w940 instructions">
+            Please visit our website:<br />
+            <a href="http://nextwavesoft.mobi" class="f">http://nextwavesoft.mobi</a>
+        </div>
+    </body>
+</html>

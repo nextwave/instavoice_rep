@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders
+END
+FBOpenGraphAction.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphAction.h
+END
+FBSessionManualTokenCachingStrategy.h
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionManualTokenCachingStrategy.h
+END
+FBProfilePictureView.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBProfilePictureView.h
+END
+NSString+SBJSON.h
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/NSString+SBJSON.h
+END
+NSObject+SBJSON.h
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/NSObject+SBJSON.h
+END
+FBError.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBError.h
+END
+FBGraphLocation.h
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphLocation.h
+END
+FBUserSettingsViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBUserSettingsViewController.h
+END
+FBFrictionlessRequestSettings.h
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFrictionlessRequestSettings.h
+END
+FBSettings.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSettings.h
+END
+SBJsonParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/SBJsonParser.h
+END
+FacebookSDK.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FacebookSDK.h
+END
+FBLoginView.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginView.h
+END
+FBFriendPickerViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFriendPickerViewController.h
+END
+FBGraphPlace.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphPlace.h
+END
+FBRequestConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequestConnection.h
+END
+SBJsonBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/SBJsonBase.h
+END
+FBPlacePickerViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBPlacePickerViewController.h
+END
+FBTestSession.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBTestSession.h
+END
+FBSession.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSession.h
+END
+SBJsonWriter.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/SBJsonWriter.h
+END
+FBSessionTokenCachingStrategy.h
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionTokenCachingStrategy.h
+END
+SBJSON.h
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/SBJSON.h
+END
+FBGraphObject.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphObject.h
+END
+FBLoginDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginDialog.h
+END
+FBRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequest.h
+END
+FBConnect.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBConnect.h
+END
+FBDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialog.h
+END
+FBGraphUser.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphUser.h
+END
+JSON.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/JSON.h
+END
+Facebook.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/Facebook.h
+END
+FBCacheDescriptor.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBCacheDescriptor.h
+END
+FBViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/enoletstalk-ios2/!svn/ver/116/trunk/EnoLetsTalk/EnoLetsTalk/Libs/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBViewController.h
+END

@@ -1,0 +1,135 @@
+/***Reset***/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	/*border-collapse: collapse;
+	border-spacing: 0;*/
+}
+
+.f{color:#b8b8b8;text-shadow:0 -1px 01px #333;font-size: 12px;font-weight: bold; text-decoration:none}
+
+html {font-family: "Helvetica", sans-serif;background: #333;}
+/***Container***/
+.w940 {width:940px;position:relative;}
+.page {padding-left:27px;padding-right:27px;position:relative;}
+
+/***Alignment***/
+
+.center {margin-left:auto;margin-right:auto;}
+.left {float:left;}
+.right {float:right;}
+.clear {clear:both;}
+.textRight {text-align:right;}
+.DownloadBtn{margin-left:0px; margin-top:3px;}
+.DownloadTitle{margin-left:52px; margin-top:3px; width:222px}
+
+
+
+/***Header styles***/
+.pageHeader {text-align:center;background:url(header.png) repeat-x;height:45px;line-height:45px;font-size: 20px;font-weight: bold;color:#fff;}
+
+/***Button styles***/
+.buttons {position:absolute;top:0;right:0;}
+.button {height:31px;display:block;color:#fff;font-size: 12px;font-weight: bold;padding-left:13px;margin-left: 20px;margin-top:6px;text-decoration: none;}
+.blackButton {background: url(buttonBlack.png) no-repeat top left;}
+.redButton {background: url(buttonRed.png) no-repeat top left;}
+.button span {height:31px;display:block;line-height: 31px;padding-right:13px;}
+.blackButton span {background: url(buttonBlack.png) no-repeat top right;}
+.redButton span {background: url(buttonRed.png) no-repeat top right;}
+
+.blackButton:active {background: url(buttonBlack.png) no-repeat bottom left;}
+.redButton:active {background: url(buttonRed.png) no-repeat bottom left;}
+.blackButton:active span {background: url(buttonBlack.png) no-repeat bottom right;color:#b6b5b5;}
+.redButton:active span {background: url(buttonRed.png) no-repeat bottom right;color:#b6b5b5;}
+/***Instructions styles***/
+.instructions {font-size: 13px;color:#fff;padding-top:25px;padding-bottom:25px;line-height:18px;}
+.smallArrowIcon {background: transparent url(arrowIconSmall.png) no-repeat center center;padding: 8px 15px;}
+
+/***Table styles***/
+/*Shadows*/
+.table table {border-bottom:1px solid #919190;width:100%;}
+.topShadow {background:transparent url(shadowTop.png) repeat-x center top;padding-top:17px;}
+.bottomShadow {background:transparent url(shadowBottom.png) repeat-x center bottom;padding-bottom:30px;}
+/*Cells*/
+th {cursor:pointer;height:44px;border-right:1px solid #2a2a2a;border-left:1px solid #5f5f5f;color:#cecccc;font-size: 14px;font-weight: bold;line-height: 44px;text-shadow:0 -1px 1px #000}
+td {text-shadow:0 -1px 0px #333;font-size: 14px;vertical-align:top;border-bottom:1px solid #5b5b5b;border-top:1px solid #898987;border-right:1px solid #6a6a6a;border-left:1px solid #969696;padding:0 10px;}
+/*Backgrounds*/
+thead .column1, thead .column2 {background-image: url(headerBackground1.png);}
+thead .column3, thead .column4 {background-image: url(headerBackground2.png);}
+tbody .column1, tbody .column2 {background-image: url(background1.png);}
+tbody .column3 {background-image: url(background2.png);}
+tbody .column4 {background-image: url(background3.png);}
+.column1 {background-position: top left;width:128px;border-left: 0;}
+.column2 {background-position: top right;width:236px;}
+.column3 {background-position: top left;}
+.column4 {background-position: top right;width:180px;border-right: 0;}
+/*Paddings,font sizes,text shadows*/
+tbody .column1 {font-weight: bold;}
+tbody .column2 {font-weight: bold;}
+tbody .column3 {}
+tbody .column4 {text-shadow:0 1px 1px #333;}
+/*Links*/
+tbody td>a {text-decoration: none;color:#fff;line-height:26px;margin-top:6px;}
+tbody td>a>span {float: left; max-width: 250px; margin-left: 10px;}
+tbody tr:hover td>a {color:#000;text-shadow:none;}
+
+/*Cell hover states*/
+tbody tr:hover td {background:#a6a6aa url(rowHover.png) repeat-x top left;border-top:1px solid #989898;border-bottom:1px solid #9a9a9e;border-right:1px solid #afafb3;border-left:1px solid #cccccf;}
+tbody tr:hover .column1 {border-left: 0;}
+tbody tr:hover .column4 {border-right: 0;}
+tbody tr:hover .underline {font-weight:normal;}
+/*Remove border on first row*/
+.first td {border-top:1px solid #666664;}
+tr.first:hover td {border-top:1px solid #cfcfd1;}
+
+/***Icons***/
+.icon {background-image: url(icons.png);background-repeat:no-repeat;}
+.delete {background-image:none;background-repeat:no-repeat;width: 34px;height: 34px;}
+tbody tr:hover .column1 .delete {background-image:url(deleteBtn1.png);}
+tbody tr:hover .column1 .delete:active {background-image:url(deleteBtn2.png);}
+th .iconDate {padding:10px 15px;margin-left:10px;background-position:0 0;}
+th .iconDownload {padding:5px 12px;margin-left:10px;background-position:0 -60px;}
+th .iconText {padding:8px 12px;margin-left:10px;background-position:0 -120px;}
+th .iconAudio {padding:8px 16px;margin-left:10px;background-position:0 -180px;}
+tr .iconDelete {background-image:none;width: 34px;height: 34px; content:' ';}
+tr:hover .iconDelete {background-image: url(icons.png);background-position:0 -300px;}
+tr .iconDelete:active {background-image: url(icons.png);background-position: 0 -480px;}
+td .iconDownload {background-position: 0 -240px;width: 28px;}
+td .iconAudio {width: 34px;height:34px;background-position:0 -360px;}
+tr:hover td .iconAudio {background-position:0 -420px;}

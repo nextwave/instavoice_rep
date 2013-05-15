@@ -1,0 +1,206 @@
+/* 
+  Localizable.strings
+  InstaVoice
+
+  Created by Wu Ming on 12-2-15.
+  Copyright (c) 2012年 GenGius. All rights reserved.
+*/
+"app.name" = "InstaVoice™";
+"settings" = "SETTINGS";
+"about" = "ABOUT";
+"home" = "HOME";
+"list.view" = "LIST VIEW";
+"share" = "SHARE";
+"help" = "HELP";
+"touch.to.command" = "TOUCH TO \nCOMMAND";
+"touch.to.stop" = "TOUCH TO \nSTOP";
+"cancel" = "Cancel";
+"ok" = "Ok";
+
+// Home
+"app.light.exceed" = "You have exceeded the maximum number of 100 transcriptions. Please upgrade to the standard version of InstaVoice to continue dictation.";
+"home.record.only" = "Record only";
+"home.no.result.found" = "No result found";
+
+// Settings
+"settings.title" = "Settings";
+//Help
+"help.img.0" = "help_tags_search_en.png";
+"help.img.1" = "help_tags_find_en.png";
+"help.img.2" = "help_tags_email_en.png";
+"help.img.3" = "help_tags_message_en.png";
+"help.img.4" = "help_tags_reminder_en.png";
+"help.img.5" = "help_tags_add_event_en.png";
+"help.img.6" = "help_tags_twitter_en.png";
+"help.img.7" = "help_tags_facebook_en.png";
+"help.img.8" = "help_tags_wordpress_en.png";
+"help.img.9" = "help_tags_copy_en.png";
+"help.img.10" = "help_tags_flag_en.png";
+"help.img.11" = "help_tags_mark_en.png";
+"help.img.12" = "help_tags_text_en.png";
+"help.img.13" = "help_tags_more_en.png";
+
+
+"help.detail.view.img" = "Help_View_en.png";
+/*
+ "help.title.0" = "Reminder";
+ "help.descr.0" = "Say \"Reminder: Call Dad for Father's Day June 21 2011 at 2 pm\"";
+ "help.descr2.0" = "Schedules a push notification to Remind you of what ever you say. If no date/time are used, we'll set the event for 24 hours from now";
+ 
+ "help.title.1" = "Add Event";
+ "help.descr.1" = "Say \"Add Event: Tina's dance recital May 7 2012 at 5:15 pm\"";
+ "help.descr2.1" = "Creates a Calender Event, if no date/time are used, we'll set the event for 24 hours from now";
+ 
+ "help.title.2" = "Email This";
+ "help.descr.2" = "Say \"Email This: Subject A totally amazing new app! Message InstaVoice = awsome!\"";
+ "help.descr2.2" = "Creates an email with the subject and message you dictate. You can also just say \"Email This....\"";
+ 
+ "help.title.3" = "Text This";
+ "help.descr.3" = "Say \"Text This: Hey, Ashley! You'll never guess what happened today!!\"";
+ "help.descr2.3" = "Creates a new text message.";
+ 
+ "help.title.4" = "Search For";
+ "help.descr.4" = "Say \"Search For Best camera review 2011\"\nSay \"Search For Boston Red Sox tickets\"";
+ "help.descr2.4" = "Searches the web for whatever you say.";
+ 
+ "help.title.5" = "FIND";
+ "help.descr.5" = "Say \"Find pizza delivery\"\nSay \"Find Instanbul\" ";
+ "help.descr2.5" = "Searches Maps for whatever you say.";
+ 
+ "help.title.6" = "Twitter This";
+ "help.descr.6" = "Say \"Twitter this Having breakfast in the most beautiful cafe in Paris\"";
+ "help.descr2.6" = "Tweets whatever you say.";
+ 
+ "help.title.7" = "Facebook This";
+ "help.descr.7" = "Say \"Facebook This Just opened in NY, our band's da bomb!!\"";
+ "help.descr2.7" = "Posts whatever you say to Facebook";
+ 
+ "help.title.8" = "Wordpress This";
+ "help.descr.8" = "Say \"Wordpress Great trail run, perfect day, had my best finish ever!\"";
+ "help.descr2.8" = "Posts whatever you say to Wordpress";
+ 
+ "help.title.9" = "Copy This";
+ "help.descr.9" = "Say \"Copy This Whatever you say is copied to clipboard\"";
+ "help.descr2.9" = "Places the text you say on the Clipboard";
+ 
+ "help.title.10" = "Mark This";
+ "help.descr.10" = "Say \"Mark This Marks Whatever you say in InstaVoice\"";
+ "help.descr2.10" = "Marks your note for later use in ListView";
+ */
+
+
+"\n\nSent by %@" = "\n\nSent by %@";
+"add event" = "add event";
+"Audio input hardware not available" = "Audio input hardware not available";
+"Calendar Event" = "Calendar Event";
+/*wuming 120220*/
+"Calendar Event Added: %@" = "Calendar Event Added: %@";
+"Can't send SMS" = "Can't send SMS";
+"Connect to Facebook" = "Connect to Facebook";
+"copy this" = "copy this";
+"Copy to Clipboard" = "Copy to Clipboard";
+"DD MM yyyy at midnight" = "DD MM yyyy at midnight";
+"DD MM yyyy at noon" = "DD MM yyyy at noon";
+"DD MM yyyy midnight" = "DD MM yyyy midnight";
+"DD MM yyyy noon" = "DD MM yyyy noon";
+"Delete Note" = "Delete Note";
+"Dictation" = "Dictation";
+"Dictation Type" = "Dictation Type";
+"Domain" = "Domain";
+"Duration" = "Duration";
+"Email" = "Email";
+"Email send error" = "Email send error";
+"email this" = "email this";
+"English AU" = "English AU";
+"English UK" = "English UK";
+"English US" = "English US";
+"Enter password" = "Enter password";
+"Enter username" = "Enter username";
+"Error sending SMS" = "Error sending SMS";
+"Error posting tweet" = "Error posting tweet";
+"facebook this" = "facebook this";
+"File already exist with this name" = "File already exist with this name";
+"find" = "find";
+"Find via Maps" = "Find via Maps";
+"Flag Note" = "Flag Note";
+"flag this" = "flag this";
+"Flagged" = "Flagged";
+"French" = "French";
+"German" = "German";
+"Invalid username or password" = "Invalid username or password";
+"Italian" = "Italian";
+"Japanese" = "Japanese";
+"Listen on Start" = "Listen on Start";
+"Logs" = "Logs";
+"Mandarin" = "Mandarin";
+"Message" = "Message";
+"Message copied to clipboard" = "Message copied to clipboard";
+"Message Sent." = "Message Sent.";
+"Name" = "Name";
+"Note copied" = "Note copied";
+"Other" = "Other";
+"Password" = "Password";
+"Posted." = "Posted.";
+"Posting to Facebook" = "Posting to Facebook";
+"Posting tweet to twitter server" = "Posting tweet to twitter server";
+"Record Only" = "Record Only";
+"Reminder" = "Reminder";
+/*wuming 120220*/
+"Reminder Set: %@" = "Reminder Set: %@";
+"save this" = "save this";
+"Saved" = "Saved";
+"Search Engine" = "Search Engine";
+"search for" = "search 4";
+"Search via Bing" = "Search via Bing";
+"Search via Google" = "Search via Google";
+"Search via Yahoo" = "Search via Yahoo";
+"Send Failed" = "Send Failed";
+"Spanish" = "Spanish";
+"Successfully posted to Wordpress server" = "Successfully posted to Wordpress server";
+"text this" = "text this";
+"twitter this" = "twitter this";
+"Unable to add Reminder" = "Unable to add Reminder";
+"Unable to start server" = "Unable to start server";
+"Update" = "Update";
+"User" = "User";
+"Username" = "Username";
+"Warning" = "Warning";
+"Web Search" = "Web Search";
+"Wordpress authentication failed" = "Wordpress authentication failed";
+"wordpress this" = "wordpress this";
+"Your email is not configured" = "Your email is not configured";
+"january" = "january";
+"february" = "february";
+"march" = "march";
+"april" = "april";
+"may" = "may";
+"june" = "june";
+"july" = "july";
+"august" = "august";
+"september" = "september";
+"october" = "october";
+"november" = "november";
+"december" = "december";
+
+
+"Back" = "Back";
+"Done" = "Done";
+"Version" = "Version";
+"Wifi Share" = "Wifi Share";
+"Settings" = "Settings";
+"Language" = "Language";
+"Failed to connect to server" = "Failed to connect to server";
+"or visit" = "or visit";
+"Please direct your web browser to the following address:" = "Please direct your web browser to the following address:";
+"Creating zip file, please be patient" = "Creating zip file, please be patient";
+"Ready to download" = "Ready to download";
+"List View" = "List View";
+"About" = "About";
+"Edit" = "Edit";
+"Help" = "Help";
+"Change Login" = "Change Login";
+"Share" = "Share";
+"Save" = "Save";
+"Cancel" = "Cancel";
+"Delete" = "Delete";
+"main.error" = "Error (no text)";
