@@ -728,9 +728,11 @@ static NSInteger nowPressedRow;
     if(currentSelected==indexPath.row && !customTable.editing) {
         //[listCell selectCell:YES animated:YES];
         [listCell togglePlaying:YES];
-        [listCell flagSelected:YES];
+        listCell.btnFlag.hidden=YES;
+       // [listCell flagSelected:YES];
     } else {
         [listCell togglePlaying:NO];
+        listCell.btnFlag.hidden=NO;
     }
     
    

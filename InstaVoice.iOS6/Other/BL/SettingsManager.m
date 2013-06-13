@@ -24,6 +24,7 @@
 @synthesize appInit;
 @synthesize logsEnable;
 @synthesize login;
+@synthesize mapIndex;
 
 static SettingsManager*  _manager;
 +(SettingsManager*) sharedManager
@@ -66,6 +67,8 @@ static SettingsManager*  _manager;
 	
 	self.dictationIndex = [defaults integerForKey:@"dictationType"];
 	self.searchIndex = [defaults integerForKey:@"searchIndex"];
+    self.mapIndex=[defaults integerForKey:@"mapIndex"];
+   
 	
 	if (firstLoad)
 	{
@@ -109,6 +112,7 @@ static SettingsManager*  _manager;
 	[defaults setBool:self.autoOn forKey:@"autoOn"];
 	[defaults setBool:self.logsEnable forKey:@"logsenable"];
     [defaults setInteger:self.login forKey:@"loginStyle"];
+    [defaults setInteger:self.mapIndex forKey:@"mapIndex"];
 	[defaults synchronize];
 }
 @end

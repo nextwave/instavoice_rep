@@ -120,6 +120,8 @@
 - (NSString*)  japanese :(NSString*) lang;
 - (NSString*)  helpImage :(NSString*) lang : (int) i;
 - (NSString*)  logs:(NSString*) lang;
+- (NSString*)  MapType:(NSString*) lang;
+- (NSString*)  map:(NSString*) lang;
 @end
 
 

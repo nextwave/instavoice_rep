@@ -12,11 +12,13 @@
 #import "UISettingsViewController.h"
 #import "UIAboutViewController.h"
 #import "UIWiFiShareViewController.h"
+#import "SKPSMTPMessage.h"
+#import "UncaughtExceptionHandler.h"
 
-
-@interface InstaVoiceAppDelegate : NSObject <UIApplicationDelegate> {
+@interface InstaVoiceAppDelegate : NSObject <UIApplicationDelegate,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate> {
     UIAlertView *alertLoading;
-    CLLocationManager *locationManager;  
+    CLLocationManager *locationManager;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -41,6 +43,7 @@
 - (void) showLoadingActivityWithText:(NSString*)text;
 -(void) dismissActivityByTimer;
 -(void) dismissActivityByTimerOnMainThread;
+-(void)saveCrashLogFile:(NSException *)exception;
 
 //Tab Click
 -(void) showSettings;
@@ -48,6 +51,7 @@
 -(void) showHome;
 -(void) showList;
 -(void) showShare;
+
 
 
 @end

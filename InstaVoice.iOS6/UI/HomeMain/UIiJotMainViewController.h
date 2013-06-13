@@ -16,7 +16,7 @@
 #import "UICustomProgressBarViewController.h"
 #import "UIHelpDetailViewController.h"
 
-@interface UIiJotMainViewController : UIParentViewController <SKRecognizerDelegate, UIActionSheetDelegate, AVAudioRecorderDelegate>  {
+@interface UIiJotMainViewController : UIParentViewController <SKRecognizerDelegate, UIActionSheetDelegate, AVAudioRecorderDelegate,MFMailComposeViewControllerDelegate>  {
     
     IBOutlet UITextView *txtTranslated;
 	UIiJotDetailViewController* detailController;
@@ -65,5 +65,6 @@
 
 -(void) customTouchButtonEnable:(bool) val;
 -(void) customEnable:(bool)val;
+-(void)sendCrashMail;
 
 @end

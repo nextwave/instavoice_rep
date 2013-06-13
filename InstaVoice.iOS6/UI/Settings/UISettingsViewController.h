@@ -12,6 +12,7 @@
 #import "UICheckBoxCell.h"
 #import "UICustomDetailCell.h"
 #import "UIParentViewController.h"
+#import "UISwichLogsCell.h"
 
 @interface UISettingsViewController : UIParentViewController {
 	UITableView* customTable;
@@ -19,9 +20,12 @@
 	UICheckBoxCell* tmpCheckBoxCell;
 	UISettingsDetailViewController* detailController;
 	UILogsViewController* logController;
+    
+    UISwichLogsCell *swichCell;
 }
 @property (nonatomic, assign) IBOutlet UICheckBoxCell* tmpCheckBoxCell;
 @property (nonatomic, assign) IBOutlet UICustomDetailCell* tmpDetailCell;
+@property (nonatomic, assign) IBOutlet UISwichLogsCell *swichCell;
 @property (nonatomic, retain) IBOutlet UITableView* customTable;
 
 @property (retain, nonatomic) IBOutlet UILabel *settingsLabel;

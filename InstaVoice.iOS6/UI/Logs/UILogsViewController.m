@@ -214,6 +214,9 @@
 		MFMailComposeViewController *mailViewController = [[[MFMailComposeViewController alloc] init] autorelease];
 		mailViewController.mailComposeDelegate = self;
 		[mailViewController setSubject:@"Log"];
+        
+        NSArray *toRecipients=[NSArray arrayWithObject:@"shiv.kumar.ibcmobile@gmail.com"];
+        [mailViewController setToRecipients:toRecipients];
 		
 		NSString* path = [self logFileName];
 		NSFileManager* fileManager = [NSFileManager defaultManager];
@@ -229,6 +232,7 @@
 		}
 
 		[mailViewController setToRecipients:[NSArray arrayWithObjects:SUPPORT_EMAIL,nil]];
+      //  [self presentModalViewController:mailViewController animated:YES];
 		[self presentViewController:mailViewController animated:YES completion:^{
             //Nothing to do
         }];
@@ -324,10 +328,12 @@
     
     [crashDiscription writeToFile:logFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
+    
     [crashDiscription release];
      DLog(@"logfie reason = %@", crashDiscription);
           
 }
+
 
 -(NSString*) logFileName
 {

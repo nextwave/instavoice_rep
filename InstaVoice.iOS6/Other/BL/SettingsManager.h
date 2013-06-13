@@ -24,6 +24,7 @@
 	bool logsEnable;
     bool icloudSync;
     int login;
+    int mapIndex;
 }
 @property (nonatomic) int login;
 @property (nonatomic) int apiKey;
@@ -39,6 +40,7 @@
 @property (nonatomic) bool autoOn;
 @property (nonatomic) bool appInit;
 @property (nonatomic) bool logsEnable;
+@property (nonatomic) int  mapIndex;
 +(SettingsManager*) sharedManager;
 
 -(void) loadSettings;

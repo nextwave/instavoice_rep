@@ -1981,6 +1981,77 @@
     }
     else return @"Error";
 }
+
+
+- (NSString*)  MapType:(NSString*) lang
+{
+    if ([lang compare:@"en_GB"] == NSOrderedSame || [lang compare:@"en-AU"] == NSOrderedSame || [lang compare:@"en_US"] == NSOrderedSame)
+    {
+        return  @"Map Type";
+    }
+    
+    else if ([lang compare:@"fr_FR"] == NSOrderedSame)
+    {
+        return @"Type de carte";
+        
+    }
+    else if ([lang compare:@"it_IT"] == NSOrderedSame)
+    {
+        return @"Tipo della mappa";
+    }
+    else if ([lang compare:@"de_DE"] == NSOrderedSame)
+    {
+        return@"Karten-Typ";//
+    }
+    else if ([lang compare:@"es_ES"] == NSOrderedSame)
+    {
+        return @"Tipo de la correspondencia";
+    }
+    else if ([lang compare:@"cn_MA"] == NSOrderedSame)
+    {
+        return @"映射类型";
+    }
+    else if ([lang compare:@"ja_JP"] == NSOrderedSame)
+    {
+        return  @"マップのタイプ";
+    }
+    else return @"Error";
+}
+- (NSString*)  map:(NSString*) lang
+{
+    if ([lang compare:@"en_GB"] == NSOrderedSame || [lang compare:@"en-AU"] == NSOrderedSame || [lang compare:@"en_US"] == NSOrderedSame)
+    {
+        return  @"Map";
+    }
+    
+    else if ([lang compare:@"fr_FR"] == NSOrderedSame)
+    {
+        return @"Carte";
+        
+    }
+    else if ([lang compare:@"it_IT"] == NSOrderedSame)
+    {
+        return @"Mappa";
+    }
+    else if ([lang compare:@"de_DE"] == NSOrderedSame)
+    {
+        return@"Karte";
+    }
+    else if ([lang compare:@"es_ES"] == NSOrderedSame)
+    {
+        return @"Mapa";//
+    }
+    else if ([lang compare:@"cn_MA"] == NSOrderedSame)
+    {
+        return @"映射";
+    }
+    else if ([lang compare:@"ja_JP"] == NSOrderedSame)
+    {
+        return  @"マップ";
+    }
+    else return @"Error";
+}
+
 - (NSString*)  searchFor :(NSString*) lang
 {
     if ([lang compare:@"en_GB"] == NSOrderedSame || [lang compare:@"en-AU"] == NSOrderedSame || [lang compare:@"en_US"] == NSOrderedSame)

@@ -104,6 +104,7 @@
 @synthesize customTable;
 @synthesize tmpDetailCell;
 @synthesize tmpCheckBoxCell;
+@synthesize swichCell;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
  - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -375,33 +376,33 @@
 		
         return cell;
 	}
-    else if (indexPath.row == 7)
+//    else if (indexPath.row == 7)
+//	{
+//		static NSString *cellsmall = @"UICustomDetailCell";
+//        
+//        UICustomDetailCell *cell = (UICustomDetailCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
+//        //if (cell == nil) 
+//		{
+//            [[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil];
+//            cell = self.tmpDetailCell;
+//            self.tmpDetailCell = nil;
+//        }
+//        cell.lblText.text = [loc ChangeLogin:lang];
+//        cell.lblDescr.text = @"";
+//		cell.imgButton.hidden = false;
+//        
+//        return cell;
+//	}
+	else if (indexPath.row == 7)
 	{
 		static NSString *cellsmall = @"UICustomDetailCell";
         
         UICustomDetailCell *cell = (UICustomDetailCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
-        //if (cell == nil) 
+        if (cell == nil) 
 		{
-            [[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil];
-            cell = self.tmpDetailCell;
-            self.tmpDetailCell = nil;
-        }
-        cell.lblText.text = [loc ChangeLogin:lang];
-        cell.lblDescr.text = @"";
-		cell.imgButton.hidden = false;
-        
-        return cell;
-	}
-	else if (indexPath.row == 8)
-	{
-		static NSString *cellsmall = @"UICustomDetailCell";
-        
-        UICustomDetailCell *cell = (UICustomDetailCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
-        //if (cell == nil) 
-		{
-            [[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil];
-            cell = self.tmpDetailCell;
-            self.tmpDetailCell = nil;
+            cell=[[[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil] objectAtIndex:0];
+//            cell = self.tmpDetailCell;
+//            self.tmpDetailCell = nil;
         }
         cell.lblText.text = kAboutVersion;
 		cell.lblDescr.text = kVersionDate;
@@ -409,23 +410,69 @@
 		return cell;
 		
 	}
-	else 
+	else if (indexPath.row == 8)
 	{
-		static NSString *cellsmall = @"UICustomDetailCell";
+//		static NSString *cellsmall = @"UICustomDetailCell";
+//        
+//        UICustomDetailCell *cell = (UICustomDetailCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
+//        //if (cell == nil) 
+//		{
+//            [[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil];
+//            cell = self.tmpDetailCell;
+//            self.tmpDetailCell = nil;
+//        }
+//        
+//       // cell.lblText.text = [loc logs:lang];
+//        cell.lblText.text=@"Send crash reports";//Need to change for all languse
+//		cell.lblDescr.text = @"";
+//		cell.imgButton.hidden = false;
+//		return cell;//UISwichLogsCell
+        
+        static NSString *cellsmall = @"UISwichLogsCell";
+        
+        UISwichLogsCell *cell = (UISwichLogsCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
+        if (cell == nil)
+		{
+            cell=[[[NSBundle mainBundle] loadNibNamed:@"UISwichLogsCell" owner:self options:nil] objectAtIndex:0];
+//            cell = self.swichCell;
+//            self.swichCell = nil;
+        }
+        
+        // cell.lblText.text = [loc logs:lang];
+        cell.logOnOff.text=@"Send crash reports";//Need to change for all languse
+		//cell.lblDescr.text = @"";
+		//cell.imgButton.hidden = false;
+		return cell;
+		
+	}
+    else if (indexPath.row == 9)
+    {
+        static NSString *cellsmall = @"UICustomDetailCell";
         
         UICustomDetailCell *cell = (UICustomDetailCell*)[customTable dequeueReusableCellWithIdentifier:cellsmall];
-        //if (cell == nil) 
+        //if (cell == nil)
 		{
             [[NSBundle mainBundle] loadNibNamed:@"UICustomDetailCell" owner:self options:nil];
             cell = self.tmpDetailCell;
             self.tmpDetailCell = nil;
         }
-        cell.lblText.text = [loc logs:lang];
-		cell.lblDescr.text = @"";
-		cell.imgButton.hidden = false;
-		return cell;
+        
+        
+        
+        cell.lblText.text = [loc MapType:lang];
 		
-	}
+		if (settings.dictationIndex == 0)
+		{
+			cell.lblDescr.text =[NSString stringWithFormat:@"Apple %@",[loc map:lang]];
+          //  @"Apple Map";
+		}
+		else
+		{
+			cell.lblDescr.text =[NSString stringWithFormat:@"Google %@",[loc map:lang]];
+		}
+		
+        return cell;
+    }
     
     return nil;
 	
@@ -459,28 +506,32 @@
     {
 		detailController.type = eSearchType;
     }
-    else if (indexPath.row == 7)
-    {
-		detailController.type = eLoginType;
-    }
+//    else if (indexPath.row == 7)
+//    {
+//		detailController.type = eLoginType;
+//    }
+	else if (indexPath.row == 7)
+	{
+		return;
+	}
 	else if (indexPath.row == 8)
 	{
-		return;
-	}
-	else 
-	{
-		if (logController == nil)
-		{
-			logController = [[UILogsViewController alloc] initWithNibName:@"UILogsViewController" bundle:[NSBundle mainBundle]];						  
-		}
-		
-		[self presentViewController:logController animated:YES completion:^{
-            // Nothing to do
-        }];
+//		if (logController == nil)
+//		{
+//			logController = [[UILogsViewController alloc] initWithNibName:@"UILogsViewController" bundle:[NSBundle mainBundle]];						  
+//		}
+//		
+//		[self presentViewController:logController animated:YES completion:^{
+//            // Nothing to do
+//        }];
 		return;
 		
 		
 	}
+    else if (indexPath.row == 9)
+    {
+        detailController.type = eMapType;
+    }
     			
 	[detailController customRefresh];
 	[self.view addSubview:detailController.view];

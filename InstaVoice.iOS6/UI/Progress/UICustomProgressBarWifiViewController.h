@@ -20,5 +20,7 @@
 -(void) updateCounter;
 -(void) startCounter;
 -(void) resetCounter;
+-(void)showProgressBar:(float)number;
+-(void) setFalseAllBtn;
 
 @end

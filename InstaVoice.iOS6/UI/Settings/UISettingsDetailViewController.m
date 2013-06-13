@@ -120,6 +120,13 @@
 		[searchArray addObject:[loc SearchviaBing:lang]];
 		[searchArray addObject:[loc SearchviaYahoo:lang]];
 	}
+    
+    if(mapArray == nil)
+    {
+        mapArray=[[NSMutableArray alloc] init];//cell.lblDescr.text =[NSString stringWithFormat:@"Apple %@",[loc map:lang]];
+        [mapArray addObject:[NSString stringWithFormat:@"Apple %@",[loc map:lang]]];
+        [mapArray addObject:[NSString stringWithFormat:@"Google %@",[loc map:lang]]];
+    }
 	
 	grayView.layer.masksToBounds = YES;
     grayView.layer.cornerRadius = 5.0;
@@ -161,8 +168,13 @@
     [languageNameArray addObject:[loc Mandarin:lang]];
   //  self.cancelBtn.titleLabel.text = [loc Cancel:lang];
     
-    [self.cancelBtn setTitle:[loc Cancel:lang] forState:UIControlStateNormal];
+   // NSString *strTital=[loc Cancel:lang];
     
+    [self.cancelBtn setTitle:[loc Cancel:lang] forState:UIControlStateNormal];
+  //  [self.cancelBtn.titleLabel sizeToFit];
+ //  self.cancelBtn.titleLabel.adjustsFontSizeToFitWidth = TRUE;
+ //   self.cancelBtn.titleLabel.font=[UIFont systemFontOfSize:11.0f];
+ //   [self.cancelBtn.titleLabel setAdjustsFontSizeToFitWidth:YES];
 }
 - (void)viewDidUnload
 {
@@ -207,6 +219,8 @@
 		return [searchArray count];
     else  if (type == eLoginType)
 		return [loginArray count];
+    else  if (type == eMapType)
+		return [mapArray count];
 	
 	return 0;
 }
@@ -232,11 +246,13 @@
 		rowCount = [dictationArray count];
 	else  if (type == eSearchType)
 		rowCount = [searchArray count];
+    else  if (type == eMapType)
+		rowCount = [mapArray count];
 	SettingsManager* settings = [SettingsManager sharedManager];
     NSString * lang = settings.language;
     Localizer* loc = [[Localizer alloc] init];
     
-    InstaVoiceAppDelegate *appdel = [[UIApplication sharedApplication] delegate];
+    InstaVoiceAppDelegate *appdel = (InstaVoiceAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appdel.aboutController.bottomBar reloadView:lang];
     
     
@@ -321,7 +337,22 @@
 			[cell setCustomSelected:false];
 		}
 		
-		cell.imgLeftIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [cell.lblTitle.text lowercaseString]]];
+        if(indexPath.row==0)
+        {
+            cell.imgLeftIcon.image=[UIImage imageNamed:@"google.png"];
+        }
+        else if(indexPath.row==1)
+        {
+            cell.imgLeftIcon.image=[UIImage imageNamed:@"bing.png"];
+        }
+        else if(indexPath.row==2)
+        {
+            cell.imgLeftIcon.image=[UIImage imageNamed:@"yahoo.png"];
+        }
+       
+        
+        
+		//cell.imgLeftIcon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [cell.lblTitle.text lowercaseString]]];
 	}
     else if (type == eLoginType)
 	{
@@ -333,15 +364,30 @@
 		{
 			cell.imgLeftIcon.image = [UIImage imageNamed:@"wordpress.png"];
 		}
-        else if ([cell.lblTitle.text compare:@"Facebook"] == NSOrderedSame)
-		{
-			cell.imgLeftIcon.image = [UIImage imageNamed:@"facebook.png"];
-		}
-        else if ([cell.lblTitle.text compare:@"Twitter"] == NSOrderedSame)
-		{
-			cell.imgLeftIcon.image = [UIImage imageNamed:@"twitter.png"];
-		}
+//        else if ([cell.lblTitle.text compare:@"Facebook"] == NSOrderedSame)
+//		{
+//			cell.imgLeftIcon.image = [UIImage imageNamed:@"facebook.png"];
+//		}
+//        else if ([cell.lblTitle.text compare:@"Twitter"] == NSOrderedSame)
+//		{
+//			cell.imgLeftIcon.image = [UIImage imageNamed:@"twitter.png"];
+//		}
 	}
+    else if (type == eMapType)
+    {
+        NSString *tital=  [mapArray objectAtIndex:indexPath.row];
+       // cell.lblTitle.text=LOC(tital);
+        cell.lblTitle.text=tital;
+        
+        if(settings.mapIndex==indexPath.row)
+        {
+           [cell setCustomSelected:true]; 
+        }
+        else
+        {
+           [cell setCustomSelected:false];
+        }
+    }
     return cell;
 }
 
@@ -380,6 +426,10 @@
         }
        
 	}
+    else if(type == eMapType)
+    {
+       settings.mapIndex = indexPath.row;
+    }
 	[settings saveSettings];
 
 	[self.customTable reloadData];

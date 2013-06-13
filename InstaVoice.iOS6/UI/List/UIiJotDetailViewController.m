@@ -15,6 +15,9 @@
 
 #import <EventKit/EventKit.h>
 #import <EventKit/EKEventStore.h>
+#import <EventKitUI/EventKitUI.h>
+
+
 
 #import "WordpressManager.h"
 #import "WordpressData.h"
@@ -139,7 +142,7 @@ int pauseCountTwo=2;
 	btnKeyboard.center=CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height-btnKeyboard.frame.size.height/2);
     CGRect tvRect = txtView.frame;
 	tvRect.origin.y = 60;//60
-    tvRect.size.height=345;//345
+    tvRect.size.height=545;//345
 	txtView.frame = tvRect;
 //    btnKeyboard.center=CGPointMake(self.view.frame.size.width/2,txtView.frame.origin.y+txtView.frame.size.height-btnKeyboard.frame.size.height/2);
     //Edited By Vineeth
@@ -308,6 +311,8 @@ int pauseCountTwo=2;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
         currentlatitude=locationManager.location.coordinate.latitude;
         currentlongitude=locationManager.location.coordinate.longitude;
+        
+        [locationManager startUpdatingLocation];
     }
     //.................................
 }
@@ -321,6 +326,8 @@ int pauseCountTwo=2;
         [self performSelectorOnMainThread:@selector(doMap:) withObject:nil waitUntilDone:NO];
         //[self doMap:mapPendingMessage];
     }
+    
+    [manager stopUpdatingLocation];
 }
 
 - (void)viewDidUnload
@@ -812,9 +819,21 @@ int pauseCountTwo=2;
 #pragma mark Pattern Match
 #pragma mark -
 
+
+-(void) calenderThis:(NSString*) message{
+
+
+    [self eventAddButtonPressed];
+
+}
+
+
+/*
+
+
 -(void) calenderThis:(NSString*) message
 {
-    
+ 
     //Create the Event Store
     EKEventStore *eventStore = [[EKEventStore alloc]init];
     
@@ -854,9 +873,11 @@ int pauseCountTwo=2;
         [self createEvent:eventStore:message];
     }
 
-   
     
 }
+ 
+ */
+
 
 -(void)createEvent:(EKEventStore*)eventStore:(NSString *)message
 {
@@ -888,6 +909,7 @@ int pauseCountTwo=2;
         
         NSError *err;
         [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+
         SettingsManager* settings = [SettingsManager sharedManager];
         NSString * lang = settings.language;
         Localizer* loc = [[Localizer alloc] init];
@@ -1103,6 +1125,9 @@ int pauseCountTwo=2;
 }
 
 
+
+
+
 -(void)createReminderEvent:(EKEventStore*)eventStore:(NSString *)message
 {
     [message retain];
@@ -1299,8 +1324,19 @@ int pauseCountTwo=2;
     }
     mapPendingMessage = nil;
     NSLog(@"message in doMap in UIijtDetailViewController is: %@",message);
-   
-    NSString *urlString = [[NSString stringWithFormat:@"http://maps.google.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    SettingsManager* settings = [SettingsManager sharedManager];
+    NSString *urlString;
+    if(settings.mapIndex==0)
+    {
+     urlString = [[NSString stringWithFormat:@"http://maps.apple.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];   
+    }
+   else
+   {
+     urlString = [[NSString stringWithFormat:@"http://maps.google.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+   }
+    
+    //NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
    // NSString *urlString = [[NSString stringWithFormat:@"https://google-developers.appspot.com/maps/documentation/javascript/examples/map-geolocation?z=14&q=%@",message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -1388,7 +1424,7 @@ int pauseCountTwo=2;
 -(void) sendEmail:(NSString*) message;
 {
 	//	self.textMessage = str;
-	if ([MFMailComposeViewController canSendMail]) 
+	if ([MFMailComposeViewController canSendMail])
 	{
 		MyMailComposeViewController *mailViewController = [[MyMailComposeViewController alloc] init];
 		mailViewController.mailComposeDelegate = self;
@@ -1403,21 +1439,12 @@ int pauseCountTwo=2;
         Localizer* loc = [[Localizer alloc] init];
         
 		NSString* body = [UtilityManager firstCapitalString:data.strMessage];
-			//if (isEmailThis)
-			body = [body stringByAppendingFormat:[loc Sentby:lang], LOC(@"app.name")];
+        //if (isEmailThis)
+        body = [body stringByAppendingFormat:[loc Sentby:lang], LOC(@"app.name")];
 		if ([data.toNumber length] != 0)
 			[mailViewController setToRecipients:[NSArray arrayWithObjects:data.toNumber, nil]];
 		[mailViewController setMessageBody:body isHTML:NO];
 		[mailViewController setSubject:[UtilityManager firstCapitalString:data.strSubject]];
-        
-        NSString* destFile = [NSString stringWithFormat:@"%@/%@.m4a", RECORDINGS_FOLDER, managedObject.name];
-		if ([[NSFileManager defaultManager] fileExistsAtPath:destFile])
-        {
-            NSURL *exportURL = [NSURL fileURLWithPath:destFile];
-            NSData *audiodata = [NSData dataWithContentsOfURL:exportURL];
-            NSString *name=[NSString stringWithFormat:@"%@.m4a",managedObject.name];
-            [mailViewController addAttachmentData:audiodata mimeType:@"audio/m4a" fileName:name];
-        }
 		[self presentViewController:mailViewController animated:YES completion:^{
             //Nothing to do
         }];
@@ -1641,6 +1668,8 @@ int pauseCountTwo=2;
 
 - (void)updateThis
 {
+    
+    //if(managedObject) managedObject.message = @"Add event";
     NSLog(@"Entered in to updateThis%@",managedObject);
     if (managedObject != nil)
 	{
@@ -1780,9 +1809,9 @@ int pauseCountTwo=2;
             {
                 tmp =[UtilityManager removeMatch:tmp match:[loc emailthis:lang]];
             }
-            else if ([UtilityManager hasStartOREnd:tmp match:@"e-mail this"])
+            else if ([UtilityManager hasStartOREnd:tmp match:@"email this"])
             {
-                tmp =[UtilityManager removeMatch:tmp match:@"e-mail this"];
+                tmp =[UtilityManager removeMatch:tmp match:@"email this"];
             }
 			[self sendEmail:tmp];
 		}
@@ -1824,7 +1853,7 @@ int pauseCountTwo=2;
             }
 			[self calenderThis:tmp];
 		}
-		else if ([UtilityManager hasStartOREnd:textVal match:[loc addEvent:lang]] || [UtilityManager hasStartOREnd:textVal match:@"message this"])
+		else if ([UtilityManager hasStartOREnd:textVal match:[loc addEvent:lang]] || [UtilityManager hasStartOREnd:textVal match:@"message this"]||[UtilityManager hasStartOREnd:textVal match:@"text this"])
 		{
             NSString* tmp = textVal;
             if ([UtilityManager hasStartOREnd:tmp match:[loc textthis:lang]])
@@ -1868,7 +1897,11 @@ int pauseCountTwo=2;
             NSString* tmp = textVal;
             tmp =[UtilityManager removeMatch:textVal match:@"remind me"];
             self.processMessage = tmp;
-			[self remindMe:tmp];
+			//[self remindMe:tmp];
+           
+            // ankur code
+            [self eventAddButtonPressed];
+            
 		}
         else
         {
@@ -2009,8 +2042,24 @@ int pauseCountTwo=2;
     CGRect rectEnd = [[userinfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     CGFloat distance = rectBegin.origin.y - rectEnd.origin.y;
     
-	CGRect rect = txtView.frame;
-	rect.size.height=85;
+	CGRect rect = txtView.frame;//175
+    BOOL isRatina=[self isRetina];
+    if(isRatina)
+    {
+        NSLog(@"Iphone %f ",[[UIScreen mainScreen] bounds].size.height);
+        if ([[UIScreen mainScreen] bounds].size.height == 568)
+        {
+            rect.size.height=self.view.frame.size.height/3.2;
+        }
+        else
+        {
+            rect.size.height=self.view.frame.size.height/5.2;
+        }
+    }
+    else
+    {
+	rect.size.height=self.view.frame.size.height/5;
+    }
 	txtView.frame = rect;
 	keyboardVisible = true;
 	
@@ -2024,6 +2073,13 @@ int pauseCountTwo=2;
 	[UIView setAnimationDuration:[[userinfo objectForKey:@"UIKeyboardAnimationDurationUserInfoKey"] doubleValue]];
 	btnKeyboard.frame = rect;
 	[UIView commitAnimations];
+}
+- (BOOL) isRetina
+{
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        return [[UIScreen mainScreen] scale] == 2.0 ? YES : NO;
+    
+    return NO;
 }
 
 #pragma mark Textview delegates
@@ -2044,4 +2100,88 @@ int pauseCountTwo=2;
 {
 	return [NSString stringWithFormat:@"%02d:%02d", first, second];
 }
+
+
+
+
+//code added by ankur  on may 29 2013
+
+
+
+- (IBAction)openBtnTouched:(id)sender{}
+
+//- (IBAction)eventAddButtonPressed:(id)sender
+- (void)eventAddButtonPressed
+
+{
+    EKEventStore* eventStore = [[EKEventStore alloc] init];
+    
+    // iOS 6 introduced a requirement where the app must
+    // explicitly request access to the user's calendar. This
+    // function is built to support the new iOS6 requirement,
+    // as well as earlier versions of the OS.
+    if([eventStore respondsToSelector:
+        @selector(requestAccessToEntityType:completion:)]) {
+        // iOS 6 and later
+        [eventStore
+         requestAccessToEntityType:EKEntityTypeEvent
+         completion:^(BOOL granted, NSError *error) {
+             [self performSelectorOnMainThread:
+              @selector(presentEventEditViewControllerWithEventStore:)
+                                    withObject:eventStore
+                                 waitUntilDone:NO];
+         }];
+    } else {
+        // iOS 5
+        [self presentEventEditViewControllerWithEventStore:eventStore];
+    }
+}
+
+- (void)presentEventEditViewControllerWithEventStore:(EKEventStore*)eventStore
+{
+    EKEventEditViewController* vc = [[EKEventEditViewController alloc] init];
+
+    vc.eventStore = eventStore;
+    
+    events = [EKEvent eventWithEventStore:eventStore];
+    // Prepopulate all kinds of useful information with you event.
+    events.title = LOC(@"app.name");
+    events.startDate = [NSDate date];
+    events.endDate = [NSDate date];
+    events.URL = [NSURL URLWithString:@"http://www.InstaVoiceTest.com"];
+    events.notes = @"Event";
+    events.allDay = YES;
+    vc.event = events;
+    
+    vc.editViewDelegate = self;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+    
+   // SettingsManager* settings = [SettingsManager sharedManager];
+   // NSString * lang = settings.language;
+   // Localizer* loc = [[Localizer alloc] init];
+    
+
+}
+
+#pragma EKEventEditViewDelegate
+
+- (void)eventEditViewController:(EKEventEditViewController*)controller
+          didCompleteWithAction:(EKEventEditViewAction)action
+{
+    
+    
+    UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:LOC(@"Calendar Event Added: %@ at %@") ,events.notes,events.endDate] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
+    
+ //   NSLog(@"events.notes,events.endDate %@  %@",events.notes,events.endDate);
+    [alert show];
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    //    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 @end

@@ -30,15 +30,21 @@
 	return (InstaVoiceAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // TestFlight integration
     
     #define TESTING 1
 #ifdef TESTING
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+   
+    // ios6
+   //[TestFlight setDeviceIdentifier:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    
 #endif
-    [TestFlight takeOff:@"1917a1ebd07da555d458e086e0c2614e_MTQ5MzU2MjAxMi0xMC0zMCAwOTozMzozMS43MjA2MDY"];
+    //[TestFlight takeOff:@"1917a1ebd07da555d458e086e0c2614e_MTQ5MzU2MjAxMi0xMC0zMCAwOTozMzozMS43MjA2MDY"];
     
     
     [[SettingsManager sharedManager] loadSettings];
@@ -52,12 +58,26 @@
 	}
     
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
+    [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
+    
+    NSString *filePath=[self logFileName];
+    FILE *fp = fopen([filePath UTF8String],"r");
+    if(fp)
+    {
+    [self startSendEmail];
+    }
+    
    
     self.window.rootViewController = self.homeNavController;
     [self.window makeKeyAndVisible]; 
     return YES;
 }
 
+- (void)installUncaughtExceptionHandler
+{
+	InstallUncaughtExceptionHandler();
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -131,14 +151,151 @@
 
 void uncaughtExceptionHandler(NSException *exception)
 {
-    NSLog(@"CRASH: %@", exception);
-    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
     if ([SettingsManager sharedManager].logsEnable)
     {
-    [UILogsViewController saveCrashLogInFile:exception];
+   // [UILogsViewController saveCrashLogInFile:exception];
+         InstaVoiceAppDelegate *appdel = (InstaVoiceAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appdel saveCrashLogFile:exception];
     }
     // Internal error reporting
 }
+-(void)saveCrashLogFile:(NSException *)exception
+{
+    //    NSLog(@"CRASH: %@", exception);
+    //    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *fileName =[NSString stringWithFormat:@"%@.log",@"MyLog"];
+	NSString *logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    //	NSFileManager* fileManager = [NSFileManager defaultManager];
+    
+    NSMutableString *crashDiscription=[[NSMutableString alloc] init];
+    FILE *fp = fopen([logFilePath UTF8String],"r");
+    NSString *priviousLog=@"";
+    if(fp)  // if login file is present call web service for authentication
+    {
+        priviousLog=[NSString stringWithContentsOfFile:logFilePath encoding:NSUTF8StringEncoding error:nil];
+    }
+    
+    if([priviousLog length]>0)
+    {
+        [crashDiscription appendString:priviousLog];
+        [crashDiscription appendString:@"\n"];
+    }
+	
+    
+    NSString *name = exception.name;
+    NSString *reason = exception.reason;//userInfo
+    
+    NSArray *tempArray=[exception callStackSymbols];
+    NSString *strInfo=[tempArray description];
+    
+    NSString *userInfo=[strInfo description];
+    
+    
+    [crashDiscription appendString:name];
+    [crashDiscription appendString:@"\n"];
+    [crashDiscription appendString:reason];
+    [crashDiscription appendString:@"\n"];
+    [crashDiscription appendString:userInfo];
+    
+    [crashDiscription writeToFile:logFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
+    [crashDiscription release];
+    DLog(@"logfie reason = %@", crashDiscription);
+    
+}
+-(void)startSendEmail
+{
+    
+    
+    SKPSMTPMessage *testMsg = [[SKPSMTPMessage alloc] init];
+    testMsg.fromEmail = @"findmehere.noreply@gmail.com";//   tmail.test123456
+    
+    //testMsg.toEmail = @"skv180@gmail.com,shiv.kumar@ibcmobile.com,sk_941@rediffmail.com,abhinav.agarwal@ibcmobile.com";//   //test@test.com
+    //set all mail id to send
+    testMsg.toEmail=@"shiv.kumar.ibcmobile@gmail.com,grndlvl@gmail.com";
+    
+    testMsg.relayHost = @"smtp.gmail.com";
+    testMsg.requiresAuth = YES;
+    testMsg.login = @"findmehere.noreply@gmail.com";
+    testMsg.pass = @"find.app1!.me";//1234.test
+    testMsg.subject = @"Crash Reports";
+    //testMsg.bccEmail = @"testbcc@test.com";
+    testMsg.wantsSecure = YES; // smtp.gmail.com doesn't work without TLS!
+    
+    // Only do this for self-signed certs!
+    // testMsg.validateSSLChain = NO;
+    testMsg.delegate = self;
+    
+   // SettingsManager* settings = [SettingsManager sharedManager];
+    NSString* path = [self logFileName];
+    
+    NSData *data = [NSData dataWithContentsOfMappedFile:path];
+//    [mailViewController addAttachmentData:data mimeType:@"text/plain" fileName:@"MyLog.log"];
+//    [mailViewController setMessageBody:@"Log in attachment" isHTML:YES];
+    
+   // NSData *imagedata=UIImagePNGRepresentation(screenShotImage);
+    
+//    NSDictionary *plainPart = [NSDictionary dictionaryWithObjectsAndKeys:@"inline;\r\n\tfilename=\"Location.png\"\"",kSKPSMTPPartContentDispositionKey,
+//                               @"base64",kSKPSMTPPartContentTransferEncodingKey,
+//                               @"image/png;\r\n\tname=Location.png;\r\n\tx-unix-mode=0666\"",kSKPSMTPPartContentTypeKey,[imagedata encodeWrappedBase64ForData],kSKPSMTPPartMessageKey,
+//                               nil];
+    
+    NSDictionary *plainPart = [NSDictionary dictionaryWithObjectsAndKeys:@"inline;\r\n\tfilename=\"Mylog.log\"\"",kSKPSMTPPartContentDispositionKey,
+                               @"base64",kSKPSMTPPartContentTransferEncodingKey,
+                               @"text/plain;\r\n\tname=Mylog.log;\r\n\tx-unix-mode=0666\"",kSKPSMTPPartContentTypeKey,[data encodeWrappedBase64ForData],kSKPSMTPPartMessageKey,
+                               nil];
+    
+    
+    //@"image/png\r\n\t-unix-mode=0644;\r\n\tname=\"01new.png\"\""
+    
+    
+    testMsg.parts = [NSArray arrayWithObjects:plainPart,nil];
+    
+    [testMsg send];
+    
+}
+-(NSString*) logFileName
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *fileName =[NSString stringWithFormat:@"%@.log",@"MyLog"];
+	NSString *logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+	return logFilePath;
+}
+- (void)messageSent:(SKPSMTPMessage *)message
+{
+    [message release];
+   
+    NSString *logFilePath = [self logFileName];
+	NSFileManager* fileManager = [NSFileManager defaultManager];
+    fclose(stderr);
+    
+	if ([fileManager fileExistsAtPath:logFilePath])
+		[fileManager removeItemAtPath:logFilePath error:nil];
+    
+    
+    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Success" message:@"Crash Logs Send Successfully" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    [alertView release];
+    //////////////NSLog(@"delegate - message sent");
+}
+
+- (void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
+{
+    [message release];
+    
+    NSString *errorMessage=[error localizedDescription];
+    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    [alertView release];
+    //////////////NSLog(@"delegate - error(%d): %@", [error code], [error localizedDescription]);
+    //////////////NSLog(@"delegate -: %@", [error localizedDescription]);
+}
+
 
 - (void)dealloc
 {

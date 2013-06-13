@@ -341,6 +341,14 @@
 		7CFAFE4114EB420000075923 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFAFE3F14EB420000075923 /* MainWindow.xib */; };
 		7F8ECF331740F8AA00A4E3AE /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8ECF321740F8AA00A4E3AE /* SpeechKit.framework */; };
 		7F8ECF4C1741387800A4E3AE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8ECF4B1741387800A4E3AE /* libsqlite3.dylib */; };
+		7F93988F174F80CC001090C7 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F93988E174F80CC001090C7 /* UncaughtExceptionHandler.m */; };
+		7FB2CFFE174B8C86003AE3AC /* UISwichLogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2CFFD174B8C86003AE3AC /* UISwichLogsCell.m */; };
+		7FB2D003174B8CC1003AE3AC /* UISwichLogsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FB2D001174B8CC1003AE3AC /* UISwichLogsCell.xib */; };
+		7FB2D00B174BB87E003AE3AC /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D006174BB87E003AE3AC /* HSK_CFUtilities.m */; };
+		7FB2D00C174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D008174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.m */; };
+		7FB2D00D174BB87E003AE3AC /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D00A174BB87E003AE3AC /* SKPSMTPMessage.m */; };
+		7FB2D010174BBF6A003AE3AC /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D00F174BBF6A003AE3AC /* NSData+Base64Additions.m */; };
+		7FB2D013174BBFD9003AE3AC /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D012174BBFD9003AE3AC /* Base64Transcoder.m */; };
 		84A0143C16337A3A002F4020 /* BackAudio-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A0143916337A3A002F4020 /* BackAudio-568h@2x.png */; };
 		84A0143D16337A3A002F4020 /* background-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A0143A16337A3A002F4020 /* background-568h@2x.png */; };
 		84A0143E16337A3A002F4020 /* hole_filler-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A0143B16337A3A002F4020 /* hole_filler-568h@2x.png */; };
@@ -1213,6 +1221,21 @@
 		7F8ECF321740F8AA00A4E3AE /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = "<group>"; };
 		7F8ECF491741334500A4E3AE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		7F8ECF4B1741387800A4E3AE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7F93988D174F80CC001090C7 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		7F93988E174F80CC001090C7 /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		7FB2CFFC174B8C86003AE3AC /* UISwichLogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwichLogsCell.h; sourceTree = "<group>"; };
+		7FB2CFFD174B8C86003AE3AC /* UISwichLogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISwichLogsCell.m; sourceTree = "<group>"; };
+		7FB2D001174B8CC1003AE3AC /* UISwichLogsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UISwichLogsCell.xib; sourceTree = "<group>"; };
+		7FB2D005174BB87E003AE3AC /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
+		7FB2D006174BB87E003AE3AC /* HSK_CFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSK_CFUtilities.m; sourceTree = "<group>"; };
+		7FB2D007174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SKPSMTPExtensions.h"; sourceTree = "<group>"; };
+		7FB2D008174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SKPSMTPExtensions.m"; sourceTree = "<group>"; };
+		7FB2D009174BB87E003AE3AC /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
+		7FB2D00A174BB87E003AE3AC /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
+		7FB2D00E174BBF6A003AE3AC /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
+		7FB2D00F174BBF6A003AE3AC /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
+		7FB2D011174BBFD9003AE3AC /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		7FB2D012174BBFD9003AE3AC /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
 		84A0143916337A3A002F4020 /* BackAudio-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackAudio-568h@2x.png"; sourceTree = "<group>"; };
 		84A0143A16337A3A002F4020 /* background-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-568h@2x.png"; sourceTree = "<group>"; };
 		84A0143B16337A3A002F4020 /* hole_filler-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hole_filler-568h@2x.png"; sourceTree = "<group>"; };
@@ -1921,6 +1944,7 @@
 		7C1C428214EB71EE00836E35 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7FB2D004174BB863003AE3AC /* Email */,
 				7CA00E7114EB7B8F00ABECB2 /* BL */,
 				7C1C428314EB71EE00836E35 /* RemindCls */,
 				7C1C428814EB71EE00836E35 /* Voice */,
@@ -2135,6 +2159,9 @@
 				7C1C42E014EB71EF00836E35 /* UITextFieldCell.h */,
 				7C1C42E114EB71EF00836E35 /* UITextFieldCell.m */,
 				7C1C42E214EB71EF00836E35 /* UITextFieldCell.xib */,
+				7FB2CFFC174B8C86003AE3AC /* UISwichLogsCell.h */,
+				7FB2CFFD174B8C86003AE3AC /* UISwichLogsCell.m */,
+				7FB2D001174B8CC1003AE3AC /* UISwichLogsCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2549,6 +2576,7 @@
 		7CFAFE1E14EB41FF00075923 = {
 			isa = PBXGroup;
 			children = (
+				7F93988B174F80A7001090C7 /* UncaughtExceptionHandle */,
 				7F8ECF4B1741387800A4E3AE /* libsqlite3.dylib */,
 				F3BED37D16BF0DD4009322BC /* Localizer.m */,
 				84EB57EB16A7741900E2D7B2 /* libTestFlight.a */,
@@ -2630,6 +2658,32 @@
 				7C1C433F14EB726F00836E35 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F93988B174F80A7001090C7 /* UncaughtExceptionHandle */ = {
+			isa = PBXGroup;
+			children = (
+				7F93988D174F80CC001090C7 /* UncaughtExceptionHandler.h */,
+				7F93988E174F80CC001090C7 /* UncaughtExceptionHandler.m */,
+			);
+			name = UncaughtExceptionHandle;
+			sourceTree = "<group>";
+		};
+		7FB2D004174BB863003AE3AC /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				7FB2D005174BB87E003AE3AC /* HSK_CFUtilities.h */,
+				7FB2D00E174BBF6A003AE3AC /* NSData+Base64Additions.h */,
+				7FB2D011174BBFD9003AE3AC /* Base64Transcoder.h */,
+				7FB2D012174BBFD9003AE3AC /* Base64Transcoder.m */,
+				7FB2D00F174BBF6A003AE3AC /* NSData+Base64Additions.m */,
+				7FB2D006174BB87E003AE3AC /* HSK_CFUtilities.m */,
+				7FB2D007174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.h */,
+				7FB2D008174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.m */,
+				7FB2D009174BB87E003AE3AC /* SKPSMTPMessage.h */,
+				7FB2D00A174BB87E003AE3AC /* SKPSMTPMessage.m */,
+			);
+			name = Email;
 			sourceTree = "<group>";
 		};
 		C2F26468160741FD00A49227 /* c_tidy */ = {
@@ -3886,6 +3940,7 @@
 				F3BED22716BD5855009322BC /* wifi_share_ready_es@2x.png in Resources */,
 				F3BED22816BD5855009322BC /* wifi_share_wifi_es.png in Resources */,
 				F3BED22916BD5855009322BC /* wifi_share_wifi_es@2x.png in Resources */,
+				7FB2D003174B8CC1003AE3AC /* UISwichLogsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4035,6 +4090,13 @@
 				C2F264B5160741FD00A49227 /* utf8.c in Sources */,
 				C2F264B6160741FD00A49227 /* win32tc.c in Sources */,
 				F3BED37E16BF0DDB009322BC /* Localizer.m in Sources */,
+				7FB2CFFE174B8C86003AE3AC /* UISwichLogsCell.m in Sources */,
+				7FB2D00B174BB87E003AE3AC /* HSK_CFUtilities.m in Sources */,
+				7FB2D00C174BB87E003AE3AC /* NSStream+SKPSMTPExtensions.m in Sources */,
+				7FB2D00D174BB87E003AE3AC /* SKPSMTPMessage.m in Sources */,
+				7FB2D010174BBF6A003AE3AC /* NSData+Base64Additions.m in Sources */,
+				7FB2D013174BBFD9003AE3AC /* Base64Transcoder.m in Sources */,
+				7F93988F174F80CC001090C7 /* UncaughtExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4125,7 +4187,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Next Wave Communications";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: daniel helled (565CHAVL5C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Next Wave Communications";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -4136,7 +4198,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/ThirdPartys/Twitter+OAuth";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PROVISIONING_PROFILE = "5326A532-8D60-4D19-9FAE-9438B699BCE4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B3D157-9034-422C-B14E-A2FC8964C439";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5326A532-8D60-4D19-9FAE-9438B699BCE4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4168,8 +4230,8 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Next Wave Communications";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: daniel helled (565CHAVL5C)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4194,8 +4256,8 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5326A532-8D60-4D19-9FAE-9438B699BCE4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B3D157-9034-422C-B14E-A2FC8964C439";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

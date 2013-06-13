@@ -38,7 +38,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *creating;
 @property (retain, nonatomic) IBOutlet UILabel *labelShare;
 @property (retain, nonatomic) IBOutlet UIButton *doneBtn;
-@property (retain, nonatomic) IBOutlet UIProgressView *progressController;
+//@property (retain, nonatomic) IBOutlet UIProgressView *progressController;
 @property (retain, nonatomic) NSTimer *progressTimmer;
 
 -(void) onClickStart;
@@ -52,4 +52,5 @@
 -(void) createArchive;
 -(void) removeArchive;
 -(void) hideProgress;
+
 @end

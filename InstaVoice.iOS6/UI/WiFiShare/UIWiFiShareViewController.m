@@ -55,7 +55,6 @@
     [_creating release];
     [_labelShare release];
     [_doneBtn release];
-    [_progressController release];
     [super dealloc];
 }
 
@@ -74,8 +73,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
             [[(InstaVoiceAppDelegate*)[[UIApplication sharedApplication] delegate] listController] updateFlagList];
         });
-    [_progressController setProgress:0.0];
-    _progressController.progressTintColor=[UIColor purpleColor];
+    
     
     self.imgReady.hidden = YES;
     self.imgCreating.hidden = YES;
@@ -387,20 +385,25 @@
 -(void) prepareIndexPage
 {
        //by EKBPGK Ticket #57
-	if (customProgress == nil) {
-		customProgress = [[UICustomProgressBarWifiViewController alloc] initWithNibName:@"UICustomProgressBarViewController" bundle:[NSBundle mainBundle]];
+	if (customProgress == nil)
+    {
+		//customProgress = [[UICustomProgressBarWifiViewController alloc] initWithNibName:@"UICustomProgressBarViewController" bundle:[NSBundle mainBundle]];
+        
+        customProgress = [[UICustomProgressBarWifiViewController alloc] initWithNibName:@"UICustomProgressBarWifiViewController" bundle:[NSBundle mainBundle]];
 	
         [self.view addSubview:customProgress.view];
         CGRect rect = customProgress.view.frame;
         rect.origin.y = 220;
         customProgress.view.frame = rect;
+        customProgress.view.hidden = true;
     }
 //	[customProgress startCounter];
     
 	imgCreating.hidden = NO;
     imgReady.hidden = YES;
-//	customProgress.view.hidden = NO;
-    _progressController.hidden=NO;
+	customProgress.view.hidden = NO;
+    
+
     
     [UtilityManager updateIndexPage];
     btnStart.enabled = YES;
@@ -434,7 +437,7 @@
 	[archiver CreateZipFile2:archivePath];
     
     
-    [_progressController setProgress:0.0];
+   
 	for (int i=0; i<count; i++)
 	{
 		DBJottTable *managedObject = (DBJottTable*)[manager.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -463,20 +466,26 @@
         [archiversub CloseZipFile2];
         [archiversub release];
         
-        float value=count-i;
-         progressValue=1/value;
-        NSLog(@"progressValue first %f",progressValue);
-        NSLog(@"progressValue value %f",value);
+        float totalValue=count;
+        float multipliyerFacter=totalValue/28;//2
+        progressValue=(float)(i+1)/multipliyerFacter;
+        NSLog(@"progressValueCount %f",progressValue);
+        
+        
+//        float value=count-i;
+//         progressValue=28/value;
+        
         
 	}
     
     [archiver CloseZipFile2];
 	[archiver release];
     
-    if(count==0)
-    {
-        progressValue=1;
-    }
+//    if(count==0)
+//    {
+//        progressValue=28;
+//    }
+   progressValue=28;
     
     //Added for testing
     /*NSDate *future = [NSDate dateWithTimeIntervalSinceNow: 2.2 ];
@@ -494,16 +503,17 @@
 
 -(void)updateProgressCounter
 {
-    NSLog(@"progressValue %f",progressValue);
-    [_progressController setProgress:progressValue];
-    if(progressValue>=1)
+    NSLog(@"progressValueNew %f",progressValue);
+  //  [_progressController setProgress:progressValue];
+    [customProgress showProgressBar:progressValue];
+    if(progressValue>=28)
     {
         [self.progressTimmer invalidate];
         self.progressTimmer=nil;
          
         progressValue=0.0;
         
-        _progressController.hidden=YES;
+       // _progressController.hidden=YES;
          NSLog(@"Timer release");
     }
 }
@@ -542,12 +552,15 @@
     imgReady.hidden = NO;
 	customProgress.view.hidden = YES;
 	[customProgress resetCounter];
+//    [customProgress setFalseAllBtn];
     
     //Edited by Vineeth for testing
    // [btnStart setTitle: @"myTitle" forState: UIControlStateDisabled];
     btnStart.enabled = YES;
    // [btnStart setTitle: @"Title" forState: UIControlStateNormal];
-
+    
+    [customProgress release];
+    customProgress=nil;
     
 }
 @end

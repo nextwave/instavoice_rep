@@ -21,6 +21,7 @@
 "app.light.exceed" = "You have exceeded the maximum number of 100 transcriptions. Please upgrade to the standard version of InstaVoice to continue dictation.";
 "home.record.only" = "Record only";
 "home.no.result.found" = "No result found";
+//"home.no.result.found" = "Email this Hi shiv find mail";
 
 // Settings
 "settings.title" = "Settings";

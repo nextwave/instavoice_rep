@@ -120,4 +120,31 @@
 		customTimer = nil;
 	}
 }
+-(void)setFalseAllBtn
+{
+    
+    NSArray* subV = self.customButtonView.subviews;
+	for (int i=0; i<[subV count];  i++)
+	{
+        UIButton* btn = [subV objectAtIndex:i];
+        [btn setHighlighted:FALSE];
+		
+	}
+}
+-(void)showProgressBar:(float)number
+{
+    NSArray* subV = self.customButtonView.subviews;
+	for (int i=0; i<number;  i++)
+	{
+		UIButton* btn = [subV objectAtIndex:i];
+		if (i< 27)
+		{
+			[btn setHighlighted:TRUE];
+		}
+//		else
+//		{
+//			[btn setHighlighted:FALSE];
+//		}
+	}
+}
 @end

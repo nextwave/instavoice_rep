@@ -6,8 +6,13 @@
 //  Copyright 2011 PDAConcepts.com. All rights reserved.
 //
 
+
+
 #import "NaunceManager.h"
 #import "MeterTable.h"
+
+
+
 
 #define FILEPATH [NSTemporaryDirectory() stringByAppendingPathComponent: @"Record.m4a"]
 
@@ -143,50 +148,56 @@ static NaunceManager* _manager;
 
 -(void) startNuanceRecording
 {
-    DLog(@"Start Recording");
     
-    isRecroding = YES;
-    isReady = NO;
-    self.startTime = [NSDate date];
-    interval = -1;
-    [self record];
     
-    SettingsManager* settings = [SettingsManager sharedManager];
-    if (settings.recordOnly == NO)
-    {   
-        SKEndOfSpeechDetection detectionType;
-        NSString* recoType;
-        NSString* langType;
+        DLog(@"Start Recording");
         
-        if (settings.dictationIndex == 0) {
-            recoType = SKDictationRecognizerType; 
-            detectionType = SKLongEndOfSpeechDetection;
-        }
-        else {
-            recoType = SKSearchRecognizerType;
-            detectionType = SKShortEndOfSpeechDetection;
-        }
+        isRecroding = YES;
+        isReady = NO;
+        self.startTime = [NSDate date];
+        interval = -1;
+        [self record];
         
-        if (settings.autoOn == NO) {
-            detectionType = SKNoEndOfSpeechDetection;
-        }
-        
-        langType = settings.language;
-        DLog(@"Language type = %@", langType);
-        DLog(@"Dictation  = %@", recoType);
-        
-        if (voiceSearch) 
+        SettingsManager* settings = [SettingsManager sharedManager];
+        if (settings.recordOnly == NO)
         {
-            [voiceSearch release];
-            voiceSearch = nil;
+            SKEndOfSpeechDetection detectionType;
+            NSString* recoType;
+            NSString* langType;
+            
+            if (settings.dictationIndex == 0) {
+                recoType = SKDictationRecognizerType;
+                detectionType = SKLongEndOfSpeechDetection;
+            }
+            else {
+                recoType = SKSearchRecognizerType;
+                detectionType = SKShortEndOfSpeechDetection;
+            }
+            
+            if (settings.autoOn == NO) {
+                detectionType = SKNoEndOfSpeechDetection;
+            }
+            
+            langType = settings.language;
+            DLog(@"Language type = %@", langType);
+            DLog(@"Dictation  = %@", recoType);
+            
+            if (voiceSearch)
+            {
+                [voiceSearch release];
+                voiceSearch = nil;
+            }
+            
+            voiceSearch = [[SKRecognizer alloc] initWithType:recoType
+                                                   detection:detectionType
+                                                    language:langType 
+                                                    delegate:self];
         }
-        
-        voiceSearch = [[SKRecognizer alloc] initWithType:recoType
-                                               detection:detectionType
-                                                language:langType 
-                                                delegate:self];
+
+    
+    
+    
     }
-}
 
 -(void) stopRecording
 {

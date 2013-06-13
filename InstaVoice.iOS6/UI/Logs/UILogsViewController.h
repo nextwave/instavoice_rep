@@ -41,4 +41,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *EnableLogsLabel;
 -(IBAction) onClickEnableChange;
 +(void)saveCrashLogInFile:(NSException *)exception;
+-(NSString*) logFileName;
 @end

@@ -23,12 +23,18 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import <EventKit/EventKit.h>
+#import <EventKitUI/EventKitUI.h>
+#import <EventKit/EKEventStore.h>
+
+
+
 @interface MyMailComposeViewController : MFMailComposeViewController {
 }
 @end
 
 
-@interface UIiJotDetailViewController : UIViewController <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate> {
+@interface UIiJotDetailViewController : UIViewController <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate,EKEventEditViewDelegate> {
  
 	DBJottTable *managedObject;
 	bool directAccess;
@@ -75,6 +81,8 @@
     NSString *mapPendingMessage;
     
     CLLocationManager *locationManager;   //Edited Alignminds
+    EKEvent* events;
+
 }
 
 
@@ -131,4 +139,8 @@
 
 -(void) keyboardWillHide:(NSNotification*) notif;
 -(void) keyboardWillShow:(NSNotification*) notif;
+
+
+- (IBAction)openBtnTouched:(id)sender;
+
 @end

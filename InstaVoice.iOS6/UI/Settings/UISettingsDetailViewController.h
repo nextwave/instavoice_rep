@@ -17,7 +17,8 @@ typedef enum
 	eLanguage,
 	eDictation,
 	eSearchType,
-	eLoginType
+	eLoginType,
+    eMapType
 }Type;
 
 @interface UISettingsDetailViewController : UIViewController {
@@ -27,6 +28,7 @@ typedef enum
 	NSMutableArray* dictationArray;
 	NSMutableArray* searchArray;
     NSMutableArray* loginArray;
+    NSMutableArray *mapArray;
 	id delegate;
 	Type type;
 	

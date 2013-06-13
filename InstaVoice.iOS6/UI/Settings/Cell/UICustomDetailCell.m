@@ -38,11 +38,15 @@
 	[imgButton release];
 	[lblText release];
 	[lblDescr release];
+    [_logSwich release];
     [super dealloc];
 }
 
 -(void) hideButton
 {
 	imgButton.hidden = true;
+}
+
+- (IBAction)swichValueChange:(id)sender {
 }
 @end

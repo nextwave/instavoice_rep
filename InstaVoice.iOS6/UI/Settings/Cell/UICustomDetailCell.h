@@ -18,7 +18,9 @@
 @property (nonatomic, retain) IBOutlet UIImageView* imgButton;
 @property (nonatomic, retain) IBOutlet UILabel* lblText;
 @property (nonatomic, retain) IBOutlet UILabel* lblDescr;
+@property (retain, nonatomic) IBOutlet UISwitch *logSwich;
 
 -(void) hideButton;
+- (IBAction)swichValueChange:(id)sender;
 
 @end

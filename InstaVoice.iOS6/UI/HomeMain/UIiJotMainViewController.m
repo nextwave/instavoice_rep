@@ -17,7 +17,11 @@
 
 //bool fromListView;
 
+//code by ankur
+//////
 
+#import "Reachability.h"
+//////
 
 
 @implementation UIiJotMainViewController
@@ -328,6 +332,26 @@
 
 - (IBAction)onClickStartStop:(id)sender 
 {
+    
+    
+    
+    
+    ////only reachability code added by ankur//////
+    Reachability *reach=[Reachability reachabilityWithHostName:@"www.google.com"];
+    NetworkStatus internetStatus = [reach currentReachabilityStatus];
+    
+    if ((internetStatus != ReachableViaWiFi) && (internetStatus != ReachableViaWWAN)) {
+        
+        UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:NSLocalizedString(@"Please check your internet connection", @"")] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+        
+        [alert show];
+        
+    }
+    else{
+        
+
+    
+    
      
     //Edited by Vineeth
    // beginHereView.hidden = YES;
@@ -582,7 +606,7 @@
         }
     }
 }
-
+}
 
 
 
@@ -747,8 +771,97 @@
     backtoOtherView = true;  //防止从Detail回来后继续录音
      
 }
-
-
+-(void)sendCrashMail
+{
+    SettingsManager* settings = [SettingsManager sharedManager];
+    NSString * lang = settings.language;
+    Localizer* loc = [[Localizer alloc] init];
+    
+	if ([MFMailComposeViewController canSendMail])
+	{
+		
+		MFMailComposeViewController *mailViewController = [[[MFMailComposeViewController alloc] init] autorelease];
+		mailViewController.mailComposeDelegate = self;
+		[mailViewController setSubject:@"Log"];
+        
+        NSArray *toRecipients=[NSArray arrayWithObject:@"shiv.kumar.ibcmobile@gmail.com"];
+        [mailViewController setToRecipients:toRecipients];
+		
+		NSString* path = [self logFileName];
+		NSFileManager* fileManager = [NSFileManager defaultManager];
+		if ([fileManager fileExistsAtPath:path])
+		{
+			NSData *data = [NSData dataWithContentsOfMappedFile:path];
+			[mailViewController addAttachmentData:data mimeType:@"text/plain" fileName:@"MyLog.log"];
+			[mailViewController setMessageBody:@"Log in attachment" isHTML:YES];
+		}
+		else
+		{
+			//[mailViewController setMessageBody:self.txtView.text isHTML:YES];
+		}
+        
+		[mailViewController setToRecipients:[NSArray arrayWithObjects:SUPPORT_EMAIL,nil]];
+        
+        //  [self presentModalViewController:mailViewController animated:YES];
+        
+        
+		[self presentViewController:mailViewController animated:YES completion:^{
+            //Nothing to do
+        }];
+		//[mailViewController release];
+		
+	}
+	else
+	{
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Log" message:[loc YourEmailNotConfigured:lang] delegate:nil cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+	}
+}
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    SettingsManager* settings = [SettingsManager sharedManager];
+    NSString * lang = settings.language;
+    Localizer* loc = [[Localizer alloc] init];
+    
+	DLog(@"mail sending result = %d", MessageComposeResultSent);
+	switch (result) {
+		case MFMailComposeResultCancelled:
+            //DLog(@"Cancelled");
+			break;
+		case MFMailComposeResultSent:
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log" message:@"Posted." delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles: nil];
+			[alert show];
+			[alert release];
+		}
+			break;
+		case MFMailComposeResultFailed:
+		{
+			DLog(@"sending error = %@", [error description]);
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log" message:[loc Emailerror:lang] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles: nil];
+			[alert show];
+			[alert release];
+		}
+			break;
+            
+		default:
+			break;
+	}
+	
+	[controller dismissViewControllerAnimated:YES completion:^{
+        // Nothing to do
+    }];
+}
+-(NSString*) logFileName
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *fileName =[NSString stringWithFormat:@"%@.log",@"MyLog"];
+	NSString *logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+	return logFilePath;
+}
 #pragma mark -
 #pragma mark Meter functions
 #pragma mark -
@@ -1066,7 +1179,12 @@
 */
 
 - (IBAction)onClickStartStopDone:(id)sender
+
 {
+    
+       
+    
+    
     [txtTranslated resignFirstResponder];
     NSString *str = txtTranslated.text;
     if (str == nil || [str isEqualToString:@""]) {
@@ -1122,4 +1240,6 @@
     return;
 }
 
+    
+    
 @end
