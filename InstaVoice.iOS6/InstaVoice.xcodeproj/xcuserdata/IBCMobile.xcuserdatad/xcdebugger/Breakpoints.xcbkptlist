@@ -8,12 +8,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "UI/List/UIiJotDetailViewController.m"
-         timestampString = "392817697.931637"
+         timestampString = "392886069.802155"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "319"
          endingLineNumber = "319"
          landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "UI/List/UIiJotDetailViewController.m"
+         timestampString = "392906389.275604"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "959"
+         endingLineNumber = "959"
+         landmarkName = "-createEvent::"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

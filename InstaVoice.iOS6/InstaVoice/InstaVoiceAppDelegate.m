@@ -216,7 +216,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     //testMsg.toEmail = @"skv180@gmail.com,shiv.kumar@ibcmobile.com,sk_941@rediffmail.com,abhinav.agarwal@ibcmobile.com";//   //test@test.com
     //set all mail id to send
-    testMsg.toEmail=@"shiv.kumar.ibcmobile@gmail.com,grndlvl@gmail.com";
+    testMsg.toEmail=@"amit.ibcmobile@gmail.com,grndlvl@gmail.com";
     
     testMsg.relayHost = @"smtp.gmail.com";
     testMsg.requiresAuth = YES;

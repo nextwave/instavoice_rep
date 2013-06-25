@@ -123,6 +123,8 @@ NSManagedObjectContext *context;
     if (customTable.editing) {
         [self onClickEdit];
     }
+    
+    [self onClickStop:nil];
 }
 
 - (void)viewDidUnload
@@ -960,11 +962,19 @@ static NSInteger nowPressedRow;
 
 - (void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[UIListCell class]]) {
+        UIListCell *lCell = (UIListCell *) cell;
+        lCell.btnFlag.hidden = YES;
+    }
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[UIListCell class]]) {
+        UIListCell *lCell = (UIListCell *) cell;
+        lCell.btnFlag.hidden = NO;
+    }
 }
 
 

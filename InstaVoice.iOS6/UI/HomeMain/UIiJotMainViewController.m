@@ -332,7 +332,7 @@
 
 - (IBAction)onClickStartStop:(id)sender 
 {
-    
+    NSLog(@"onClickStartStop called");
     
     
     
@@ -606,6 +606,8 @@
         }
     }
 }
+    
+        NSLog(@"onClickStartStop ended");
 }
 
 
@@ -784,7 +786,7 @@
 		mailViewController.mailComposeDelegate = self;
 		[mailViewController setSubject:@"Log"];
         
-        NSArray *toRecipients=[NSArray arrayWithObject:@"shiv.kumar.ibcmobile@gmail.com"];
+        NSArray *toRecipients=[NSArray arrayWithObject:@"amit.ibcmobile@gmail.com"];
         [mailViewController setToRecipients:toRecipients];
 		
 		NSString* path = [self logFileName];

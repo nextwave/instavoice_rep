@@ -309,10 +309,10 @@ int pauseCountTwo=2;
         locationManager.delegate = self;
         locationManager.distanceFilter = kCLLocationAccuracyHundredMeters;//kCLDistanceFilterNone; // whenever we move
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
-        currentlatitude=locationManager.location.coordinate.latitude;
-        currentlongitude=locationManager.location.coordinate.longitude;
-        
-        [locationManager startUpdatingLocation];
+        //currentlatitude=locationManager.location.coordinate.latitude;
+        //currentlongitude=locationManager.location.coordinate.longitude;
+        currentlatitude = 0;
+        currentlongitude = 0;
     }
     //.................................
 }
@@ -320,14 +320,33 @@ int pauseCountTwo=2;
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    NSLog(@"Location found");
     currentlatitude=newLocation.coordinate.latitude;
 	currentlongitude=newLocation.coordinate.longitude;
-    if(self.mapPendingMessage!=nil) {
-        [self performSelectorOnMainThread:@selector(doMap:) withObject:nil waitUntilDone:NO];
-        //[self doMap:mapPendingMessage];
+    
+    //If location has been discovered then stop updating the location
+    if (currentlongitude!=0 || currentlatitude!=0) {
+        [manager stopUpdatingLocation];
+    }else{
+        return;
     }
     
+    //After location has been discovered
+    //If there is message for openinig map, then call doMap
+    if(self.mapPendingMessage!=nil) {
+        [self performSelectorOnMainThread:@selector(doMap:) withObject:self.mapPendingMessage waitUntilDone:NO];
+        //[self doMap:mapPendingMessage];
+        self.mapPendingMessage = nil; //Consume the mapPendingmessage
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to update location");
+    
     [manager stopUpdatingLocation];
+    self.mapPendingMessage = nil; //Consume the mapPendingmessage
 }
 
 - (void)viewDidUnload
@@ -819,16 +838,17 @@ int pauseCountTwo=2;
 #pragma mark Pattern Match
 #pragma mark -
 
-
+NSString *calenderMsg;
+/*
 -(void) calenderThis:(NSString*) message{
 
-
+    calenderMsg = message;
     [self eventAddButtonPressed];
 
 }
+*/
 
 
-/*
 
 
 -(void) calenderThis:(NSString*) message
@@ -861,8 +881,10 @@ int pauseCountTwo=2;
                 //Access granted------------------
             }
             else{
-                
-               [self createEvent:eventStore:message];
+                    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                       [self createEvent:eventStore:message];
+                   });
 
             }
         }];
@@ -876,8 +898,6 @@ int pauseCountTwo=2;
     
 }
  
- */
-
 
 -(void)createEvent:(EKEventStore*)eventStore:(NSString *)message
 {
@@ -895,6 +915,7 @@ int pauseCountTwo=2;
         [event setCalendar:[eventStore defaultCalendarForNewEvents]];
         
         event.title = messageTitle;
+        event.notes = messageBody;
         
         if (rule!=nil) {
             [event addRecurrenceRule:rule];
@@ -906,29 +927,36 @@ int pauseCountTwo=2;
         event.endDate = [[[NSDate alloc] initWithTimeInterval:(60*60) sinceDate:date] autorelease];
         DLog(@"Calender End Date = %@",event.startDate);
         
+        //Launching eventEditView Controller
+        EKEventEditViewController *vc = [[EKEventEditViewController alloc] init];
+        vc.eventStore = eventStore;
+        vc.event = event;
+        vc.editViewDelegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
+        [vc release];
         
-        NSError *err;
-        [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
-
-        SettingsManager* settings = [SettingsManager sharedManager];
-        NSString * lang = settings.language;
-        Localizer* loc = [[Localizer alloc] init];
-        
-        //find current data
-        NSDate *now = [[NSDate alloc] init];
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-        [formatter setLocale:usLocale];
-        [formatter setDateFormat:@"MMMM dd, yyyy h:mm aa"];
-        NSString *dateStr = [formatter stringFromDate:now];
-        [now release];
-        
-        
-        UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:[loc CalendarEventAtAdded:lang],messageBody,dateStr] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+//        NSError *err;
+//        [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+//
+//        SettingsManager* settings = [SettingsManager sharedManager];
+//        NSString * lang = settings.language;
+//        Localizer* loc = [[Localizer alloc] init];
+//        
+//        //find current data
+//        NSDate *now = [[NSDate alloc] init];
+//        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+//        NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//        [formatter setLocale:usLocale];
+//        [formatter setDateFormat:@"MMMM dd, yyyy h:mm aa"];
+//        NSString *dateStr = [formatter stringFromDate:now];
+//        [now release];
+//        
+//        
+//        UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:[loc CalendarEventAtAdded:lang],messageBody,dateStr] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
+//        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
      
     }
-    [self onClickBack];
+    //[self onClickBack];
 }
 
 -(NSDate*) getDateFromMessage:(NSString*) message title:(NSString**) title body:(NSString**) body rule:(EKRecurrenceRule**) rule
@@ -1319,22 +1347,29 @@ int pauseCountTwo=2;
     
    // message=@"";
     
-    if(message==nil && mapPendingMessage!=nil) {
-        message = mapPendingMessage;
+    //If current position is not determined
+    if (0==currentlatitude && 0==currentlongitude) {
+        self.mapPendingMessage = message;
+        [locationManager startUpdatingLocation];
+        return;
     }
-    mapPendingMessage = nil;
+    
     NSLog(@"message in doMap in UIijtDetailViewController is: %@",message);
     
     SettingsManager* settings = [SettingsManager sharedManager];
     NSString *urlString;
     if(settings.mapIndex==0)
     {
-     urlString = [[NSString stringWithFormat:@"http://maps.apple.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];   
+     urlString = [[NSString stringWithFormat:@"http://maps.apple.com/map?ssll=%g,%g&z=14&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];   
     }
    else
    {
      urlString = [[NSString stringWithFormat:@"http://maps.google.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
    }
+    
+    //Reset current location
+    currentlongitude = 0;
+    currentlatitude = 0;
     
     //NSString *urlString = [[NSString stringWithFormat:@"http://maps.apple.com/maps?sll=%g,%g&radius=25miles&z=14&mrt=all&q=%@",currentlatitude,currentlongitude,message] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -1404,7 +1439,8 @@ int pauseCountTwo=2;
 		NSString* str = [message stringByReplacingOccurrencesOfString:@" " withString:@"&nbsp;"];
 		str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@"<br>"];
 		str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
-		controller.body = str;
+		//controller.body = str;
+        controller.body = message;
 		//[self dismissModalViewControllerAnimated:NO];
 		[self presentViewController:controller animated:YES completion:^{
             //Nothing to do
@@ -1798,9 +1834,9 @@ int pauseCountTwo=2;
             [self doCopy:textVal];
             toDelete = NO;
 		}
-		else if ([UtilityManager hasStartOREnd:textVal match:@"facebook this"])
+		else if ([UtilityManager hasStartOREnd:textVal match:[loc facebookthis:lang]]) //Amit edit
 		{
-			[self sendFacebook:[UtilityManager removeMatch:textVal match:@"facebook this"]];
+			[self sendFacebook:[UtilityManager removeMatch:textVal match:[loc facebookthis:lang]]];
 		}
 		else if ([UtilityManager hasStartOREnd:textVal match:[loc emailthis:lang]] || [UtilityManager hasStartOREnd:textVal match:[loc emailthis:lang]])
 		{
@@ -1886,7 +1922,9 @@ int pauseCountTwo=2;
 		{
 			[self doSearch:[UtilityManager removeMatch:textVal match:[loc searchFor:lang]]];
 		}
-		else if ([UtilityManager hasStartOREnd:textVal match:@"remind me"])
+		//else if ([UtilityManager hasStartOREnd:textVal match:@"remind me"]) //Amit edit
+        else if ([UtilityManager hasStartOREnd:textVal match:[loc Reminder:lang]] ||
+                 [UtilityManager hasStartOREnd:textVal match:@"remind me"]) //Amit edit
 		{
             NSString* message = [MyDatePattern normalizeTime:textVal];
             if([message compare:textVal]!=NSOrderedSame) {
@@ -1895,12 +1933,19 @@ int pauseCountTwo=2;
                 [self updateThis];
             }
             NSString* tmp = textVal;
-            tmp =[UtilityManager removeMatch:textVal match:@"remind me"];
+            //tmp =[UtilityManager removeMatch:textVal match:@"remind me"]; //Amit edit
+            //Amit edit
+            if ([UtilityManager hasStartOREnd:textVal match:[loc Reminder:lang]]) {
+                tmp =[UtilityManager removeMatch:textVal match:[loc Reminder:lang]];
+            }else{
+                tmp =[UtilityManager removeMatch:textVal match:@"remind me"];
+            }
+            
             self.processMessage = tmp;
-			//[self remindMe:tmp];
+			[self remindMe:tmp]; //Amit edit
            
             // ankur code
-            [self eventAddButtonPressed];
+            //[self eventAddButtonPressed];
             
 		}
         else
@@ -2126,10 +2171,12 @@ int pauseCountTwo=2;
         [eventStore
          requestAccessToEntityType:EKEntityTypeEvent
          completion:^(BOOL granted, NSError *error) {
-             [self performSelectorOnMainThread:
-              @selector(presentEventEditViewControllerWithEventStore:)
-                                    withObject:eventStore
-                                 waitUntilDone:NO];
+             if (granted) {
+                 [self performSelectorOnMainThread:
+                  @selector(presentEventEditViewControllerWithEventStore:)
+                                        withObject:eventStore
+                                     waitUntilDone:NO];
+             }
          }];
     } else {
         // iOS 5
@@ -2149,7 +2196,8 @@ int pauseCountTwo=2;
     events.startDate = [NSDate date];
     events.endDate = [NSDate date];
     events.URL = [NSURL URLWithString:@"http://www.InstaVoiceTest.com"];
-    events.notes = @"Event";
+    //events.notes = @"Event";
+    events.notes = calenderMsg;
     events.allDay = YES;
     vc.event = events;
     
@@ -2165,20 +2213,86 @@ int pauseCountTwo=2;
 
 }
 
-#pragma EKEventEditViewDelegate
-
+#pragma mark EKEventEditViewDelegate methods
 - (void)eventEditViewController:(EKEventEditViewController*)controller
           didCompleteWithAction:(EKEventEditViewAction)action
 {
+//    if (action == EKEventEditViewActionSaved) {
+//        UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:LOC(@"Calendar Event Added: %@ at %@") ,events.notes,events.endDate] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
+//        
+//        //   NSLog(@"events.notes,events.endDate %@  %@",events.notes,events.endDate);
+//        [alert show];
+//
+//    }
+//    
+//    [controller dismissViewControllerAnimated:YES completion:nil];
+//    //    [self dismissViewControllerAnimated:YES completion:nil];
     
     
-    UIAlertView *alert=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:LOC(@"Calendar Event Added: %@ at %@") ,events.notes,events.endDate] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
+    NSError *err = nil;
+    EKEventStore *eventStore = controller.eventStore;
+    EKEvent *event = controller.event;
     
- //   NSLog(@"events.notes,events.endDate %@  %@",events.notes,events.endDate);
-    [alert show];
+    __block NSString *alertMessage;
     
-    [controller dismissViewControllerAnimated:YES completion:nil];
-    //    [self dismissViewControllerAnimated:YES completion:nil];
+    switch (action) {
+        case EKEventEditViewActionCanceled:
+            break;
+        case EKEventEditViewActionDeleted:
+            break;
+        case EKEventEditViewActionSaved:
+            //Capturing Alert message from event
+            alertMessage = event.notes;
+            event.notes = nil;
+            
+            //Saving the event to eventStore
+            [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+            
+            if (err) {
+                DLog(@"Saving event to eventStore failed");
+                DLog(@"Error: %@",err);
+            }else{
+                DLog(@"Event successfully saved to eventStore");
+            }
+            break;
+        default:
+            break;
+    }
+    
+    UIAlertView *successAlertV=nil;
+    //Commiting changes to Event Store
+    if (nil == err && (action == EKEventEditViewActionSaved)) {
+        [eventStore commit:&err];
+        if (err) {
+            DLog(@"Commiting to EventStore failed");
+            DLog(@"Error: %@",err);
+        }else{
+            DLog(@"Committed successfully");
+            
+            //-------Showing Success message
+            SettingsManager* settings = [SettingsManager sharedManager];
+            NSString * lang = settings.language;
+            Localizer* loc = [[Localizer alloc] init];
+            
+            //find current data
+            NSDate *now = [[NSDate alloc] init];
+            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            [formatter setLocale:usLocale];
+            [formatter setDateFormat:@"MMMM dd, yyyy h:mm aa"];
+            NSString *dateStr = [formatter stringFromDate:now];
+            [now release];
+            
+            successAlertV=[[[UIAlertView alloc] initWithTitle:LOC(@"app.name") message:[NSString stringWithFormat:[loc CalendarEventAtAdded:lang],alertMessage,dateStr] delegate:self cancelButtonTitle:LOC(@"ok") otherButtonTitles:nil] autorelease];
+        }
+    }
+    
+    //Dismiss the ViewController
+    [controller dismissViewControllerAnimated:YES completion:^{
+        if (successAlertV) {
+            [successAlertV show];
+        }
+    }];
 }
 
 
